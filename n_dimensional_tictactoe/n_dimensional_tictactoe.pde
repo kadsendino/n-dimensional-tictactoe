@@ -4,14 +4,14 @@ begin: 06.11.21
 last updated 06.11.21
 */
 
-int mode=0, changeMode=0;
+int mode=1, changeMode=1;
 
 MainMenue mm;
 Game game;
 
 void setup()
 {
-  fullScreen();
+  size(500,500);
   orientation(PORTRAIT);
   
   mm = new MainMenue();
