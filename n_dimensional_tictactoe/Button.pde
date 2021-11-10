@@ -2,7 +2,6 @@ class Button
 {
   float x, y, w, h, st;
   String label="";
-  color col = #130820;
   
   Button(float x, float y, float w, String label)
   {
@@ -25,12 +24,12 @@ class Button
   
   void draw()
   {
-    stroke(this.col);
+    stroke(secCol);
     strokeWeight(this.st);
-    noFill();
+    fill(primCol);
     rect(this.x, this.y, this.w, this.h);
     
-    fill(this.col);
+    fill(secCol);
     textAlign(CENTER, CENTER);
     textSize(this.h/3);
     text(this.label, this.x+this.w/2, this.y+this.h/2);
