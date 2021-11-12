@@ -11,7 +11,7 @@ Game game;
 
 void setup()
 {
-  size(500,500);
+  size(900,900);
   orientation(PORTRAIT);
   
   mm = new MainMenue();
@@ -22,6 +22,7 @@ void setup()
 
 void draw()
 {
+  //noLoop();
   background(#f2ecf9);
   
   switch (mode)

@@ -3,13 +3,12 @@ class Field
 {
   int index;
   int[] coords;
-  int x,y,w,h;
-  boolean selected;
+  float x,y,w,h;
   color selectedColor;
   Player player;
 
 
-  Field(int x,int y,int w,int h,int index,int[] coords)
+  Field(float x,float y,float w,float h,int index,int[] coords)
   {
     this.x = x;
     this.y = y;
@@ -24,14 +23,9 @@ class Field
     this.player = player;
   }
   
-    void setSelected(boolean selected)
+  void show(boolean field_is_selected)
   {
-    this.selected = selected;
-  }
-  
-  void show()
-  {
-    if(selected)
+    if(field_is_selected)
     {
       noStroke();
       fill(selectedColor);
@@ -39,7 +33,7 @@ class Field
     }
     if(player!=null)
     {
-      player.show(x,y,h,w,20);
+      player.show(x,y,h,w,w/20);
     }
     
     
