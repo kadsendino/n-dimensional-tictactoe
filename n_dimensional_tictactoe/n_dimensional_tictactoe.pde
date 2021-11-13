@@ -1,29 +1,37 @@
 /* 
 https://github.com/dennisgunter/n-dimensional-tictactoe
 begin: 06.11.21
-last updated: 10.11.21
+last updated: 13.11.21
 */
 
 int mode=0, changeMode=0, fade=0;
 String errorText="";
 color primCol=#f2ecf9, secCol=#0d1306;
+Boolean devSettings=false;
+
+PImage m1logoLightIMG, m1logoDarkIMG;
 
 MainMenue mm;
 Game game;
 Settings settings;
 PreGameMenue pgm;
 About about;
+SetupGameMenue sgm;
 
 void setup()
 {
   fullScreen();
   orientation(PORTRAIT);
   
+  m1logoLightIMG = loadImage("m1logoLight.png");
+  m1logoDarkIMG = loadImage("m1logoDark.png");
+  
   mm = new MainMenue();
-  game = new Game();
+  game = new Game(0);
   settings = new Settings();
   pgm = new PreGameMenue();
   about = new About();
+  sgm = new SetupGameMenue();
 }
 
 void draw()
@@ -40,6 +48,8 @@ void draw()
   { pgm.draw(); }
   else if(mode == 4)
   { about.draw(); }
+  else if(mode == 5)
+  { sgm.draw(); }
   
   if(fade > 0)
   { printError(); }
@@ -60,6 +70,8 @@ void mousePressed()
   { pgm.mousePressed(); }
   else if(mode == 4)
   { about.mousePressed(); }
+  else if(mode == 5)
+  { sgm.mousePressed(); }
   
   fade -= 30;
 }
@@ -69,19 +81,24 @@ void switchMode()
   if(changeMode == 0)
   { mm.refresh(); }
   else if(changeMode == 1)
-  { game = new Game(); }
+  { game = new Game(sgm.dimensions); } //it is expected that you want to start a new game here, if not: mode = 1; changeMode = 1;
   else if(changeMode == 2)
   { settings.refresh(); }
   else if(changeMode == 3)
   { pgm.refresh(); }
   else if(changeMode == 4)
   { about.refresh(); }
+  else if(changeMode == 5)
+  { sgm.refresh(); }
   else
   {
     createError("ERROR : 00 : "+changeMode);
     changeMode = mode;
   }
   mode = changeMode;
+  
+  if(devSettings)
+  { createError(str(mode)); }
 }
 
 void printError()
@@ -100,4 +117,10 @@ void createError(String error)
   else
   { errorText = error; }
   fade = 350;
+}
+
+void clearErrors()
+{
+  fade = 0;
+  errorText = "";
 }
