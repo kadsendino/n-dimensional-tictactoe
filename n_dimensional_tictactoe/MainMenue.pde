@@ -31,6 +31,6 @@ class MainMenue extends Menue
     else if(this.aboutBt.mouseOver())
     { changeMode = 4; }
     else if(this.backBt.mouseOver())
-    { exit(); }
+    { System.exit(0); }
   }
 }
