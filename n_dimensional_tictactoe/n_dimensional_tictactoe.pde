@@ -20,7 +20,7 @@ SetupGameMenue sgm;
 
 void setup()
 {
-  size(400,900);
+  fullScreen();
   orientation(PORTRAIT);
   
   m1logoLightIMG = loadImage("m1logoLight.png");
