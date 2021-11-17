@@ -7,8 +7,8 @@ class Settings extends Menue
   Settings()
   {
     super();
-    this.darkModeBt = new Button(this.x+this.w/2-this.w/10, this.y+this.h/2-this.w/16, this.w/5, "DARK");
-    this.devSetBt = new Button(this.x+this.w/2-this.w/3, this.y+this.h/2+this.w/6, this.w/1.5, this.w/5, "dev. options: "+devSettings);
+    this.darkModeBt = new Button(this.x+this.w/2-this.w/10, this.y+this.w/5, this.w/5, "DARK");
+    this.devSetBt = new Button(this.x+this.w/2-this.w/3, this.y+this.w/5*2.5, this.w/1.5, this.w/5, "dev. options: "+devSettings);
   }
   
   void draw()
@@ -24,18 +24,32 @@ class Settings extends Menue
   {
     super.mousePressed();
     if(this.darkModeBt.mouseOver())
+    { this.darkModeBt.selected = true; }
+    else if(this.devSetBt.mouseOver())
+    { this.devSetBt.selected = true; }
+  }
+  void mouseReleased()
+  {
+    if(this.darkModeBt.mouseOver() && this.darkModeBt.selected)
     {
-      this.darkMode = (this.darkMode == false);
+      this.darkMode = !this.darkMode;
       color c = primCol;
       primCol = secCol;
       secCol = c;
       
       if(this.darkMode)
-      { this.darkModeBt.label = "LIGHT"; }
+      {
+        this.darkModeBt.label = "LIGHT";
+        m1logoIMG = loadImage("m1logoLight.png");
+      }
       else
-      { this.darkModeBt.label = "DARK"; }
+      {
+        this.darkModeBt.label = "DARK";
+        m1logoIMG = loadImage("m1logoDark.png");
+      }
     }
-    else if(this.devSetBt.mouseOver())
+    
+    else if(this.devSetBt.mouseOver() && this.devSetBt.selected)
     {
       clearErrors();
       createError("DEVELOPER OPTIONS");
@@ -58,5 +72,14 @@ class Settings extends Menue
       }
       this.devSetBt.label = "dev. options: "+devSettings;
     }
+    
+    super.mouseReleased();
+  }
+  
+  void unselectButtons()
+  {
+    super.unselectButtons();
+    this.darkModeBt.selected = false;
+    this.devSetBt.selected = false;
   }
 }

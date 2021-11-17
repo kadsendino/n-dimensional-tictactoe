@@ -1,9 +1,7 @@
 int ndivide(int a,int b,int n)
 {
   for(int i=0;i<n;i++)
-  {
-    a = (a/b);
-  }
+  { a /= b; }
   return a;
 }
 
@@ -11,9 +9,7 @@ int power(int a,int b)
 {
   int erg = 1;
   for(int i=0;i<b;i++)
-  {
-    erg *= a;
-  }
+  { erg *= a; }
   return erg;
 }
 
@@ -56,20 +52,19 @@ class Gamefield
     int even_counter=0;
     for(int i=0;i<dim;i++)
     {
-        players[i] = new Player(i+1);       
-      
-        if(i % 2 == 0) //  dim -> odd
-        {
-         this.odd_lines += 2 * power(3,odd_counter);
-         odd_counter++;
-        }
-        else if(i % 2 == 1) // dim -> even
-        {
-         this.even_lines += 2 * power(3,even_counter);
-         even_counter++;
-        }
-    }
+      players[i] = new Player(i+1);       
     
+      if(i % 2 == 0) //  dim -> odd
+      {
+       this.odd_lines += 2 * power(3,odd_counter);
+       odd_counter++;
+      }
+      else if(i % 2 == 1) // dim -> even
+      {
+       this.even_lines += 2 * power(3,even_counter);
+       even_counter++;
+      }
+    }
   }
 
   int[] getCoords_Field(int dim,int index)
@@ -77,9 +72,7 @@ class Gamefield
     int[] coords = new int[dim];  // will be saved by [1D,2D,3D ... ND]
     
     for(int j=0;j<dim;j++)
-    {
-      coords[j] = ndivide(index,3,j) % 3;
-    }
+    { coords[j] = ndivide(index,3,j) % 3; }
       
     return coords;
   }
@@ -114,12 +107,11 @@ class Gamefield
     }
     
     return position;
-    
   }
   
   void show()
   {    
-    fill(0);
+    fill(secCol);
     noStroke();
     
     for(int i=1;i<this.even_lines+1;i++)
@@ -128,9 +120,7 @@ class Gamefield
       for(int j=0;j<even_dim;j++)
       {
         if (i % power(3,j) == 0)
-        {
-          strokeWidth *= 2;
-        }
+        { strokeWidth *= 2; }
       }
       rect(x + i*field_w - strokeWidth/2, y , strokeWidth,h);
     }
@@ -141,24 +131,17 @@ class Gamefield
       for(int j=0;j<odd_dim;j++)
       {
         if (i % power(3,j) == 0)
-        {
-          strokeWidth *= 2;
-        }
+        { strokeWidth *= 2; }
       }
       rect(x , y + i*field_h - strokeWidth/2, w , strokeWidth);
     }
-
-    for(Player player:players)
-    {
-      showPlayer_Field(player);
-    }
     
+    for(Player player:players)
+    { showPlayer_Field(player); }
   }
   
-  void setPlayer_Field(int old_index,int new_index,Player player)
-  {
-    player.setField(old_index,new_index);
-  }
+  void setPlayer_Field(int old_index, int new_index, Player player)
+  { player.setField(old_index, new_index); }
   
   void showPlayer_Field(Player player)
   {
@@ -170,7 +153,5 @@ class Gamefield
         player.show(position[0],position[1],position[2],position[3],12/dim);
       }
     }
-  
   }
-
 }

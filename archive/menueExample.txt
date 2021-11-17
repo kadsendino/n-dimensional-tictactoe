@@ -1,0 +1,24 @@
+class Statistics extends Menue
+{
+  Statistics()
+  {
+    super();
+  }
+
+  void draw()
+  { super.draw(); }
+  
+  void mousePressed()
+  {
+    super.mousePressed();
+  }
+  void mouseReleased()
+  {
+    super.mouseReleased();
+  }
+  
+  void unselectButtons()
+  {
+    super.unselectButtons();
+  }
+}

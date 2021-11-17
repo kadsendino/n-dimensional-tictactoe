@@ -1,7 +1,7 @@
 /* 
 https://github.com/dennisgunter/n-dimensional-tictactoe
 begin: 06.11.21
-last updated: 13.11.21
+last updated: 17.11.21
 */
 
 int mode=0, changeMode=0, fade=0;
@@ -9,29 +9,30 @@ String errorText="";
 color primCol=#f2ecf9, secCol=#0d1306;
 Boolean devSettings=false;
 
-PImage m1logoLightIMG, m1logoDarkIMG;
+PImage m1logoIMG, backGroundIMG;
 
 MainMenue mm;
 Game game;
 Settings settings;
 PreGameMenue pgm;
 About about;
-SetupGameMenue sgm;
+InGameMenue igm;
+Statistics stats;
 
 void setup()
 {
   fullScreen();
   orientation(PORTRAIT);
   
-  m1logoLightIMG = loadImage("m1logoLight.png");
-  m1logoDarkIMG = loadImage("m1logoDark.png");
+  m1logoIMG = loadImage("m1logoDark.png");
   
   mm = new MainMenue();
   game = new Game(0);
   settings = new Settings();
   pgm = new PreGameMenue();
   about = new About();
-  sgm = new SetupGameMenue();
+  igm = new InGameMenue();
+  stats = new Statistics();
 }
 
 void draw()
@@ -49,7 +50,9 @@ void draw()
   else if(mode == 4)
   { about.draw(); }
   else if(mode == 5)
-  { sgm.draw(); }
+  { igm.draw(); }
+  else if(mode == 6)
+  { stats.draw(); }
   
   if(fade > 0)
   { printError(); }
@@ -71,25 +74,40 @@ void mousePressed()
   else if(mode == 4)
   { about.mousePressed(); }
   else if(mode == 5)
-  { sgm.mousePressed(); }
+  { igm.mousePressed(); }
+  else if(mode == 6)
+  { stats.mousePressed(); }
   
   fade -= 30;
+}
+void mouseReleased()
+{
+  if(mode == 0)
+  { mm.mouseReleased(); }
+  else if(mode == 1)
+  { game.mouseReleased(); }
+  else if(mode == 2)
+  { settings.mouseReleased(); }
+  else if(mode == 3)
+  { pgm.mouseReleased(); }
+  else if(mode == 4)
+  { about.mouseReleased(); }
+  else if(mode == 5)
+  { igm.mouseReleased(); }
+  else if(mode == 6)
+  { stats.mouseReleased(); }
 }
 
 void switchMode()
 {
-  if(changeMode == 0)
-  { mm.refresh(); }
+  if(changeMode == 0) {}
   else if(changeMode == 1)
-  { game = new Game(sgm.dimensions); } //it is expected that you want to start a new game here, if not: mode = 1; changeMode = 1;
-  else if(changeMode == 2)
-  { settings.refresh(); }
-  else if(changeMode == 3)
-  { pgm.refresh(); }
-  else if(changeMode == 4)
-  { about.refresh(); }
-  else if(changeMode == 5)
-  { sgm.refresh(); }
+  { game = new Game(pgm.dimensions); } //it is expected that you want to start a new game here, if not: mode = 1; changeMode = 1;
+  else if(changeMode == 2) {}
+  else if(changeMode == 3) {}
+  else if(changeMode == 4) {}
+  else if(changeMode == 5) {}
+  else if(changeMode == 6) {}
   else
   {
     createError("ERROR : 00 : "+changeMode);

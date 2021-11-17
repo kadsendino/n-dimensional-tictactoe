@@ -2,6 +2,7 @@ class Button
 {
   float x, y, w, h, st;
   String label="";
+  Boolean selected=false;
   
   Button(float x, float y, float w, String label)
   {
@@ -33,6 +34,13 @@ class Button
     textAlign(CENTER, CENTER);
     textSize(this.h/3);
     text(this.label, this.x+this.w/2, this.y+this.h/2);
+    
+    if(this.selected)
+    {
+      noStroke();
+      fill(secCol, 100);
+      rect(this.x, this.y, this.w, this.h);
+    }
   }
   
   boolean mouseOver()
