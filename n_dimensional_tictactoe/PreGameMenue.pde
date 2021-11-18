@@ -1,31 +1,46 @@
 class PreGameMenue extends Menue
 {
-  int dimensions=2;
+  int dimensions=2, gameMode=0;
   
-  Button playBt, dimensionsBt, plusBt, minusBt;
+  Button playBt, dimensionsBt, plusBt, minusBt, gMode0Bt, gMode1Bt;
   
   PreGameMenue()
   {
     super();
-    this.dimensionsBt  = new Button(this.x+this.w/2-this.w/10, this.y+this.w/5, this.w/5, str(this.dimensions));
-    this.minusBt = new Button(this.x+this.w/4-this.w/10, this.y+this.w/5, this.w/5, "-");
-    this.plusBt = new Button(this.x+this.w/4*3-this.w/10, this.y+this.w/5, this.w/5, "+");
-    this.playBt = new Button(this.x+this.w/2-this.w/10, this.y+this.w/5*2.5, this.w/5, "PLAY");
+    this.dimensionsBt  = new Button(this.x+this.w/2-this.w/10, this.y+this.w/5*2.5, this.w/5, str(this.dimensions));
+    this.dimensionsBt.setCorners(0);
+    this.minusBt = new Button(this.x+this.w/4-this.w/10, this.y+this.w/5*2.5, this.w/5, "-");
+    this.minusBt.setCorners(20,0,0,20);
+    this.plusBt = new Button(this.x+this.w/4*3-this.w/10, this.y+this.w/5*2.5, this.w/5, "+");
+    this.plusBt.setCorners(0,20,20,0);
+    
+    this.gMode0Bt  = new Button(this.x+this.w/2-this.w/10*3.25, this.y+this.w/5*5, this.w/10*3,this.w/5, "CLASSIC");
+    this.gMode0Bt.setCorners(20,0,0,20);
+    this.gMode0Bt.selected = true;
+    this.gMode1Bt = new Button(this.x+this.w/2+this.w/10*0.25, this.y+this.w/5*5, this.w/10*3, this.w/5, "EXTREME");
+    this.gMode1Bt.setCorners(0,20,20,0);
+    
+    this.playBt = new Button(this.x+this.w/2-this.w/10, this.y+this.w/5*6.5, this.w/5, "PLAY");
   }
   
   void draw()
   {
     super.draw();
     
-    textSize(this.h/20);
+    textSize(this.h/15);
     textAlign(CENTER,CENTER);
     fill(secCol);
-    text("DIMENSIONS", this.x+this.w/2, this.y+this.h/20);
+    text("SINGLEPLAYER", this.x+this.w/2, this.y+this.w/5);
+    textSize(this.h/20);
+    text("DIMENSIONS", this.x+this.w/2, this.y+this.w/5*2);
+    text("GAME MODE", this.x+this.w/2, this.y+this.w/5*4.5);
     
     this.dimensionsBt.draw();
     this.minusBt.draw();
     this.plusBt.draw();
-    playBt.draw();
+    this.gMode0Bt.draw();
+    this.gMode1Bt.draw();
+    this.playBt.draw();
   }
   
   void mousePressed()
@@ -38,6 +53,11 @@ class PreGameMenue extends Menue
     else if(this.plusBt.mouseOver())
     { this.plusBt.selected = true; }
     
+    else if(this.gMode0Bt.mouseOver())
+    { this.gMode0Bt.selected = true; }
+    else if(this.gMode1Bt.mouseOver())
+    { this.gMode1Bt.selected = true; }
+    
     else if(this.playBt.mouseOver())
     { this.playBt.selected = true; }
   }
@@ -45,6 +65,7 @@ class PreGameMenue extends Menue
   {
     if(this.backBt.mouseOver() && this.backBt.selected)
     { changeMode = 0; }
+    
     else if(this.minusBt.mouseOver() && this.minusBt.selected)
     {
       this.dimensions--;
@@ -57,6 +78,20 @@ class PreGameMenue extends Menue
       this.dimensions++;
       this.dimensionsBt.label = str(this.dimensions);
     }
+    
+    else if(this.gMode0Bt.mouseOver() && this.minusBt.selected)
+    {
+      this.gMode1Bt.selected = false;
+      this.gMode0Bt.selected = true;
+      this.gameMode = 0;
+    }
+    else if(this.gMode1Bt.mouseOver() && this.plusBt.selected)
+    {
+      this.gMode1Bt.selected = true;
+      this.gMode0Bt.selected = false;
+      this.gameMode = 1;
+    }
+    
     else if(this.playBt.mouseOver() && this.playBt.selected)
     { changeMode = 1; }
     

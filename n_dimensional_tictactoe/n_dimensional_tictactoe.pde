@@ -1,7 +1,7 @@
 /* 
 https://github.com/dennisgunter/n-dimensional-tictactoe
 begin: 06.11.21
-last updated: 17.11.21
+last updated: 18.11.21
 */
 
 int mode=0, changeMode=0, fade=0;
@@ -27,7 +27,7 @@ void setup()
   m1logoIMG = loadImage("m1logoDark.png");
   
   mm = new MainMenue();
-  game = new Game(0);
+  game = new Game(0,0);
   settings = new Settings();
   pgm = new PreGameMenue();
   about = new About();
@@ -102,7 +102,7 @@ void switchMode()
 {
   if(changeMode == 0) {}
   else if(changeMode == 1)
-  { game = new Game(pgm.dimensions); } //it is expected that you want to start a new game here, if not: mode = 1; changeMode = 1;
+  { game = new Game(pgm.dimensions, pgm.gameMode); } //it is expected that you want to start a new game here, if not: mode = 1; changeMode = 1;
   else if(changeMode == 2) {}
   else if(changeMode == 3) {}
   else if(changeMode == 4) {}

@@ -1,14 +1,13 @@
 class Game
 {
-  int dimensions;
-  int counter;
+  int dimensions, gameMode, counter;
   
-  Button backBt;
+  Button menueBt;
   Gamefield gamefield;
   
-  Game(int dimensions)
+  Game(int dimensions, int gameMode)
   { 
-    this.backBt = new Button(width/2-width/50*4, width/50*4, width/50*8, "|||");
+    this.menueBt = new Button(width/50*4, width/50*4, width/50*8, "|||");
     
     this.dimensions = dimensions;
     int x,y,w,h;
@@ -29,6 +28,8 @@ class Game
     }
     
     this.gamefield = new Gamefield(x,y,w,h,dimensions);
+    
+    this.gameMode = gameMode;
   }
   
   void draw()
@@ -40,17 +41,17 @@ class Game
     
     counter++;
     
-    this.backBt.draw();
+    this.menueBt.draw();
   }
   
   void mousePressed()
   {
-    if(this.backBt.mouseOver())
-    { this.backBt.selected = true; }
+    if(this.menueBt.mouseOver())
+    { this.menueBt.selected = true; }
   }
   void mouseReleased()
   {
-    if(this.backBt.mouseOver() && this.backBt.selected)
+    if(this.menueBt.mouseOver() && this.menueBt.selected)
     {
       backGroundIMG = get();
       changeMode = 5;
@@ -60,5 +61,5 @@ class Game
   }
   
   void unselectButtons()
-  { this.backBt.selected = false; }
+  { this.menueBt.selected = false; }
 }

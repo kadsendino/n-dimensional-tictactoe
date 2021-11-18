@@ -8,11 +8,11 @@ class MainMenue extends Menue
     
     backBt.label = "QUIT";
 
-    this.singlePBt = new Button(this.x+this.w/2-this.w/4, this.y+this.w/5, this.w/2, this.w/5, "SINGLEPLAYER");
-    this.multiPBt = new Button(this.x+this.w/2-this.w/3, this.y+this.w/5*2.5, this.w/1.5, this.w/5, "LOCAL MULTIPLAYER");
-    this.statsBt = new Button(this.x+this.w/2-this.w/5, this.y+this.w/5*4, this.w/2.5, this.w/5, "STATISTICS");
-    this.settingsBt = new Button(this.x+this.w/2-this.w/6, this.y+this.w/5*5.5, this.w/3, this.w/5, "SETTINGS");
-    this.aboutBt = new Button(this.x+this.w/2-this.w/8, this.y+this.w/5*7, this.w/4, this.w/5, "ABOUT");
+    this.singlePBt = new Button(width/2-this.w/3, this.y+this.w/5, this.w/1.5, this.w/5, "SINGLEPLAYER");
+    this.multiPBt = new Button(width/2-this.w/3, this.y+this.w/5*2.5, this.w/1.5, this.w/5, "LOCAL MULTIPLAYER");
+    this.statsBt = new Button(width/2-this.w/3, this.y+this.w/5*4, this.w/1.5, this.w/5, "STATISTICS");
+    this.settingsBt = new Button(width/2-this.w/3, this.y+this.w/5*5.5, this.w/1.5, this.w/5, "SETTINGS");
+    this.aboutBt = new Button(width/2-this.w/3, this.y+this.w/5*7, this.w/1.5, this.w/5, "ABOUT");
   }
   
   void draw()
