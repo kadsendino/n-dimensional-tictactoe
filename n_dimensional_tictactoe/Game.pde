@@ -34,12 +34,37 @@ class Game
   
   void draw()
   {
-    if(counter % 60 == 0)
-    { this.gamefield.setPlayer_Field(-1, (int) random(gamefield.fields-1), gamefield.players[(int) random(this.dimensions)]); }
+    
+    if(frameCount % 60 == 0)
+    { 
+      boolean enter=true;
+      int field=-2;
+      while(enter == true)
+      {
+        enter = false;
+        field = (int) random(gamefield.fields-1);
+        for(Player player:gamefield.players)
+        {
+          for(int i:player.fields)
+          {
+            if(i == field)
+            {
+              enter = true;
+            }
+          }
+        }
+      }
+      this.gamefield.setPlayer_Field(-1,field, gamefield.players[counter]);
+      counter++;
+      if(counter == this.dimensions) 
+      {
+        counter = 0;
+      }
+    }
     
     this.gamefield.show();
     
-    counter++;
+    
     
     this.menueBt.draw();
   }
