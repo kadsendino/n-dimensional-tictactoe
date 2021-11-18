@@ -27,7 +27,7 @@ class About extends Menue
     textSize(this.h/20);
     textAlign(CENTER,CENTER);
     fill(secCol);
-    text("version 0.1.3", this.x+this.w/2, this.y+this.h/20);
+    text("version 0.1.4", this.x+this.w/2, this.y+this.h/20);
   }
   
   void mousePressed()

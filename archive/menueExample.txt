@@ -1,6 +1,6 @@
-class Statistics extends Menue
+class /*menue*/ extends Menue
 {
-  Statistics()
+  /*menue*/()
   {
     super();
   }

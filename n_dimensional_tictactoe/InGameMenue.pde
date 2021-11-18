@@ -8,7 +8,7 @@ class InGameMenue extends Menue
     
     this.backBt.label = "MENU";
     
-    this.continueBt = new Button(this.x+this.w/2-this.w/7, this.y+this.w/5, this.w/3.5, this.w/5, "continue");
+    this.continueBt = new Button(this.x+this.w/2-this.w/3, this.y+this.w/5, this.w/1.5, this.w/5, "CONTINUE");
   }
   
   void draw()
@@ -18,14 +18,14 @@ class InGameMenue extends Menue
     fill(primCol,200);
     rect(0,0,width,height);
     
-    super.draw();
-    
-    this.continueBt.draw();
-    
     textSize(this.h/20);
     textAlign(CENTER,CENTER);
     fill(secCol);
     text("GAME PAUSED", this.x+this.w/2, this.y+this.h/20);
+    
+    super.draw();
+    
+    this.continueBt.draw();
   }
   
   void mousePressed()

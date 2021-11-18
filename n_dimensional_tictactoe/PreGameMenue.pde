@@ -79,15 +79,13 @@ class PreGameMenue extends Menue
       this.dimensionsBt.label = str(this.dimensions);
     }
     
-    else if(this.gMode0Bt.mouseOver() && this.minusBt.selected)
+    else if(this.gMode0Bt.mouseOver() && this.gMode0Bt.selected)
     {
       this.gMode1Bt.selected = false;
-      this.gMode0Bt.selected = true;
       this.gameMode = 0;
     }
-    else if(this.gMode1Bt.mouseOver() && this.plusBt.selected)
+    else if(this.gMode1Bt.mouseOver() && this.gMode1Bt.selected)
     {
-      this.gMode1Bt.selected = true;
       this.gMode0Bt.selected = false;
       this.gameMode = 1;
     }

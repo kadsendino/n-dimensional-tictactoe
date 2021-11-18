@@ -22,14 +22,14 @@ class Gamefield
   Player[] players;
   
   int show_dim;
-  int even_dim,odd_dim;
-  float x,y,w,h;
-  float field_w,field_h;
+  int even_dim, odd_dim;
+  float x, y, w, h;
+  float field_w, field_h;
   int even_lines=0;
   int odd_lines=0;
    
 
-  Gamefield(float x,float y,float w,float h,int dim)
+  Gamefield(float x, float y, float w, float h, int dim)
   {
     this.x = x;
     this.y = y;
@@ -96,13 +96,13 @@ class Gamefield
       
       if(j % 2 == 0) //  dim -> odd
       {
-       position[1] += coords[j] * field_h * power(3,odd_counter);
-       odd_counter++;
+        position[1] += coords[j] * field_h * power(3,odd_counter);
+        odd_counter++;
       }
       else if(j % 2 == 1) // dim -> even
       {
-       position[0] += coords[j] * field_w * power(3,even_counter);
-       even_counter++;
+        position[0] += coords[j] * field_w * power(3,even_counter);
+        even_counter++;
       }
     }
     

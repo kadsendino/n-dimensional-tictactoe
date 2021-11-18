@@ -15,57 +15,51 @@ class Game
     if(dimensions % 2 == 0)
     {
       x = width/10;
-      w = width - width / 5;
+      w = width - width/5;
       y = height/2 - w/2;
       h = w;
     }
     else
     {
       x = width/4;
-      w = width - width / 2;
-      y = height/2 - (3*w)/2;
-      h = 3*w;
+      w = width/2;
+      y = height/2 - (w*3)/2;
+      h = w*3;
     }
     
-    this.gamefield = new Gamefield(x,y,w,h,dimensions);
+    this.gamefield = new Gamefield(x, y, w, h, dimensions);
     
     this.gameMode = gameMode;
   }
   
   void draw()
   {
-    
     if(frameCount % 60 == 0)
     { 
       boolean enter=true;
-      int field=-2;
+      int field = -2;
       while(enter == true)
       {
         enter = false;
         field = (int) random(gamefield.fields-1);
-        for(Player player:gamefield.players)
+        for(Player player : gamefield.players)
         {
-          for(int i:player.fields)
+          for(int i : player.fields)
           {
             if(i == field)
-            {
-              enter = true;
-            }
+            { enter = true; }
           }
         }
       }
-      this.gamefield.setPlayer_Field(-1,field, gamefield.players[counter]);
+      this.gamefield.setPlayer_Field(-1, field, gamefield.players[counter]);
       counter++;
-      if(counter == this.dimensions) 
-      {
-        counter = 0;
-      }
+      counter %= this.dimensions;
+      /*if(counter == this.dimensions)
+      { counter = 0; }*/
     }
     
     this.gamefield.show();
-    
-    
-    
+
     this.menueBt.draw();
   }
   
