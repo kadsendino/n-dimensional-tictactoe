@@ -1,7 +1,7 @@
 /* 
 https://github.com/dennisgunter/n-dimensional-tictactoe
 begin: 06.11.21
-last updated: 18.11.21
+last updated: 19.11.21
 */
 
 int mode=0, changeMode=0, fade=0;

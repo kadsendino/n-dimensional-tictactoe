@@ -15,51 +15,66 @@ class Game
     if(dimensions % 2 == 0)
     {
       x = width/10;
-      w = width - width/5;
+      w = width - width / 5;
       y = height/2 - w/2;
       h = w;
     }
     else
     {
       x = width/4;
-      w = width/2;
-      y = height/2 - (w*3)/2;
-      h = w*3;
+      w = width - width / 2;
+      y = height/2 - (3*w)/2;
+      h = 3*w;
     }
     
-    this.gamefield = new Gamefield(x, y, w, h, dimensions);
+    this.gamefield = new Gamefield(x,y,w,h,dimensions);
     
     this.gameMode = gameMode;
   }
   
   void draw()
   {
+    
     if(frameCount % 60 == 0)
     { 
+      int stone=0;
       boolean enter=true;
-      int field = -2;
+      int field=-2;
       while(enter == true)
       {
         enter = false;
         field = (int) random(gamefield.fields-1);
-        for(Player player : gamefield.players)
+        for(Player player:gamefield.players)
         {
-          for(int i : player.fields)
+          for(int i:player.fields)
           {
             if(i == field)
-            { enter = true; }
+            {
+              enter = true;
+            }
           }
         }
       }
-      this.gamefield.setPlayer_Field(-1, field, gamefield.players[counter]);
+      stone=(int) random(0,2);
+      for(int i=0;i<gamefield.players[counter].fields.length;i++)
+      {
+        if(gamefield.players[counter].fields[i] == -1)
+        {
+          stone = i;
+        }
+      }
+      this.gamefield.setPlayer_Field(gamefield.players[counter].fields[stone],field, gamefield.players[counter]);
       counter++;
-      counter %= this.dimensions;
-      /*if(counter == this.dimensions)
-      { counter = 0; }*/
+      if(counter == this.dimensions) 
+      {
+        counter = 0;
+      }
     }
     
     this.gamefield.show();
-
+    
+    
+    
     this.menueBt.draw();
   }
   

@@ -2,13 +2,14 @@ class Settings extends Menue
 {
   int devSet=0;
   Boolean darkMode = false;
-  Button darkModeBt, devSetBt;
+  Button darkModeBt, devSetBt, backToggleBt;
   
   Settings()
   {
     super();
-    this.darkModeBt = new Button(this.x+this.w/2-this.w/10, this.y+this.w/5, this.w/5, "DARK");
+    this.darkModeBt = new Button(this.x+this.w/2-this.w/10, this.y+this.w/5, this.w/1.5, this.w/5, "DARK MODE");
     this.devSetBt = new Button(this.x+this.w/2-this.w/3, this.y+this.w/5*2.5, this.w/1.5, this.w/5, "dev. options: "+devSettings);
+    this.backToggleBt = new Button(this.x+this.w/2-this.w/10, this.y+this.w/5, this.w/5, "Toggle Back Buttons");
   }
   
   void draw()

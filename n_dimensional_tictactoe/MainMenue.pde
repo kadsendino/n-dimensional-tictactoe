@@ -5,8 +5,8 @@ class MainMenue extends Menue
   MainMenue()
   {
     super();
-    
-    backBt.label = "QUIT";
+
+    this.backBt.label = "QUIT";
 
     this.singlePBt = new Button(width/2-this.w/3, this.y+this.w/5, this.w/1.5, this.w/5, "SINGLEPLAYER");
     this.statsBt = new Button(width/2-this.w/3, this.y+this.w/5*2.5, this.w/1.5, this.w/5, "STATISTICS");
