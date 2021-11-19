@@ -7,7 +7,7 @@ class Game
   
   Game(int dimensions, int gameMode)
   { 
-    this.menueBt = new Button(width/50*4, width/50*4, width/50*8, "|||");
+    this.menueBt = new Button(width - width/50*4 - width/50*8 , width/50*4, width/50*8, "|||");
     
     this.dimensions = dimensions;
     int x,y,w,h;
@@ -34,7 +34,7 @@ class Game
   
   void draw()
   {
-    
+    /*
     if(frameCount % 60 == 0)
     { 
       int stone=0;
@@ -70,18 +70,29 @@ class Game
         counter = 0;
       }
     }
+    */
     
     this.gamefield.show();
-    
-    
-    
+
     this.menueBt.draw();
+    
+    if(this.gamefield.winner != "")
+    {
+      pogm.winner = this.gamefield.winner;
+      backGroundIMG = get();
+      changeMode = 7;
+    }
   }
   
   void mousePressed()
   {
     if(this.menueBt.mouseOver())
     { this.menueBt.selected = true; }
+    
+    if(this.gamefield.mouseOver())
+    { 
+      this.gamefield.press(mouseX,mouseY);
+    }
   }
   void mouseReleased()
   {
@@ -90,8 +101,14 @@ class Game
       backGroundIMG = get();
       changeMode = 5;
     }
-    
+    if(this.gamefield.mouseOver())
+    { 
+      this.gamefield.manage_turn(mouseX,mouseY);
+    }
+    this.gamefield.unPress();
     this.unselectButtons();
+    
+
   }
   
   void unselectButtons()

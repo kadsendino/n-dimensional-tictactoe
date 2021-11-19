@@ -7,7 +7,7 @@ class Settings extends Menue
   Settings()
   {
     super();
-    this.darkModeBt = new Button(this.x+this.w/2-this.w/10, this.y+this.w/5, this.w/1.5, this.w/5, "DARK MODE");
+    this.darkModeBt = new Button(this.x+this.w/2-this.w/3, this.y+this.w/5, this.w/1.5, this.w/5, "DARK MODE");
     this.devSetBt = new Button(this.x+this.w/2-this.w/3, this.y+this.w/5*2.5, this.w/1.5, this.w/5, "dev. options: "+devSettings);
     this.backToggleBt = new Button(this.x+this.w/2-this.w/10, this.y+this.w/5, this.w/5, "Toggle Back Buttons");
   }

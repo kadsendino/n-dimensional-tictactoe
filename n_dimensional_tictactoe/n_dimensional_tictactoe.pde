@@ -23,6 +23,7 @@ PostGameMenue pogm;
 
 void setup()
 {
+  //size(400,900);
   fullScreen();
   orientation(PORTRAIT);
   
