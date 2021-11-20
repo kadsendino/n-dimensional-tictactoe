@@ -1,7 +1,7 @@
 /* 
 https://github.com/dennisgunter/n-dimensional-tictactoe
 begin: 06.11.21
-last updated: 19.11.21
+last updated: 20.11.21
 */
 
 int mode=0, changeMode=0, fade=0;
@@ -23,7 +23,6 @@ PostGameMenue pogm;
 
 void setup()
 {
-  //size(400,900);
   fullScreen();
   orientation(PORTRAIT);
   
@@ -32,10 +31,9 @@ void setup()
   fileM = new FileManager();
   ArrayList <String> content = fileM.readFile("stats.ndttt");
   stats = new Statistics(int(content.get(0)), int(content.get(1)));
-  //stats = new Statistics(0,0);
-  
+
   mm = new MainMenue();
-  game = new Game(0,0);
+  game = new Game(0,0,0);
   settings = new Settings();
   prgm = new PreGameMenue();
   about = new About();
@@ -124,7 +122,7 @@ void switchMode()
   if(changeMode == 0) {} //mainMenue
   else if(changeMode == 1)
   {
-    game = new Game(prgm.dimensions, prgm.gameMode); //it is expected that you want to start a new game here, if not: mode = 1; changeMode = 1;
+    game = new Game(prgm.dimensions, prgm.gameMode, prgm.players); //it is expected that you want to start a new game here, if not: mode = 1; changeMode = 1;
     if(devSettings)
     { createError("game mode:" +prgm.gameMode); }
   }
@@ -133,7 +131,8 @@ void switchMode()
   else if(changeMode == 4) {} //about
   else if(changeMode == 5) {} //inGameMenue
   else if(changeMode == 6) {} //stats
-  else if(changeMode == 7) {} //PostGameMenue
+  else if(changeMode == 7) //PostGameMenue
+  { pogm.refresh(); } 
   else
   {
     createError("ERROR : 00 : "+changeMode);
@@ -170,6 +169,4 @@ void clearErrors()
 }
 
 void quitGame()
-{
-  System.exit(0);
-}
+{ System.exit(0); }

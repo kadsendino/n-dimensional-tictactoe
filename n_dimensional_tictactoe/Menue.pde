@@ -9,7 +9,6 @@ class Menue
     this.y = height/8;
     this.w = width/10*8;
     this.h = height/8*6;
-    //this.st = this.h/45;
     
     this.backBt = new Button(this.x+this.w/2-this.w/10, this.y+this.w/5*8.5, this.w/5, "BACK");
   }

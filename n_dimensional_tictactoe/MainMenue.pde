@@ -1,6 +1,6 @@
 class MainMenue extends Menue
 {
-  Button singlePBt, manualBt, statsBt, settingsBt, aboutBt;
+  Button playBt, manualBt, statsBt, settingsBt, aboutBt;
   
   MainMenue()
   {
@@ -8,7 +8,7 @@ class MainMenue extends Menue
 
     this.backBt.label = "QUIT";
 
-    this.singlePBt = new Button(width/2-this.w/3, this.y+this.w/5, this.w/1.5, this.w/5, "SINGLEPLAYER");
+    this.playBt = new Button(width/2-this.w/3, this.y+this.w/5, this.w/1.5, this.w/5, "PLAY");
     this.statsBt = new Button(width/2-this.w/3, this.y+this.w/5*2.5, this.w/1.5, this.w/5, "STATISTICS");
     this.settingsBt = new Button(width/2-this.w/3, this.y+this.w/5*4, this.w/1.5, this.w/5, "SETTINGS");
     this.manualBt = new Button(width/2-this.w/3, this.y+this.w/5*5.5, this.w/1.5, this.w/5, "HOW TO PLAY");
@@ -19,7 +19,7 @@ class MainMenue extends Menue
   {
     super.draw();
     
-    this.singlePBt.draw();
+    this.playBt.draw();
     this.manualBt.draw();
     this.statsBt.draw();
     this.settingsBt.draw();
@@ -28,8 +28,8 @@ class MainMenue extends Menue
   
   void mousePressed()
   {
-    if(this.singlePBt.mouseOver())
-    { this.singlePBt.selected = true; }
+    if(this.playBt.mouseOver())
+    { this.playBt.selected = true; }
     else if(this.manualBt.mouseOver())
     { this.manualBt.selected = true; }
     
@@ -45,7 +45,7 @@ class MainMenue extends Menue
   }
   void mouseReleased()
   {
-    if(this.singlePBt.mouseOver() && this.singlePBt.selected)
+    if(this.playBt.mouseOver() && this.playBt.selected)
     { changeMode = 3; }
     else if(this.statsBt.mouseOver() && this.statsBt.selected)
     { changeMode = 6; }
@@ -63,7 +63,7 @@ class MainMenue extends Menue
   
   void unselectButtons()
   {
-    this.singlePBt.selected = false;
+    this.playBt.selected = false;
     this.manualBt.selected = false;
     this.statsBt.selected = false;
     this.settingsBt.selected = false;

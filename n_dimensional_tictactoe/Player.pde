@@ -2,6 +2,7 @@ class Player
 {
   int player_id=0;
   int[] fields;
+  boolean highlight=false;
   
   Player(int player_id)
   {
@@ -26,11 +27,14 @@ class Player
   int[] getFields()
   { return this.fields; }
   
-  void show(float x,float y, float h, float w,float stroke_width)
+  void show(float x,float y, float w, float h, float stroke_width)
   {
     noFill();
     strokeWeight(stroke_width);
-    stroke(secCol);
+    if(this.highlight)
+    { stroke(#ff0000); }
+    else
+    { stroke(secCol); }
     if (this.player_id==0){}
     else if (this.player_id==1)
     {

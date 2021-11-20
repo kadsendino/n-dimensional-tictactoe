@@ -1,12 +1,12 @@
 class Game
 {
-  int dimensions, gameMode, counter;
+  int dimensions, gameMode, counter, players;
   
   Button menueBt;
   Gamefield gamefield;
   
-  Game(int dimensions, int gameMode)
-  { 
+  Game(int dimensions, int gameMode, int players)
+  {
     this.menueBt = new Button(width - width/50*4 - width/50*8 , width/50*4, width/50*8, "|||");
     
     this.dimensions = dimensions;
@@ -30,47 +30,20 @@ class Game
     this.gamefield = new Gamefield(x,y,w,h,dimensions);
     
     this.gameMode = gameMode;
+    this.players = players;
   }
   
   void draw()
   {
-    /*
-    if(frameCount % 60 == 0)
-    { 
-      int stone=0;
-      boolean enter=true;
-      int field=-2;
-      while(enter == true)
-      {
-        enter = false;
-        field = (int) random(gamefield.fields-1);
-        for(Player player:gamefield.players)
-        {
-          for(int i:player.fields)
-          {
-            if(i == field)
-            {
-              enter = true;
-            }
-          }
-        }
-      }
-      stone=(int) random(0,2);
-      for(int i=0;i<gamefield.players[counter].fields.length;i++)
-      {
-        if(gamefield.players[counter].fields[i] == -1)
-        {
-          stone = i;
-        }
-      }
-      this.gamefield.setPlayer_Field(gamefield.players[counter].fields[stone],field, gamefield.players[counter]);
-      counter++;
-      if(counter == this.dimensions) 
-      {
-        counter = 0;
-      }
-    }
-    */
+    gamefield.players[gamefield.player_counter].show(width/6-width/16, width/50*8-width/16, width/8, width/8, height/200);
+    
+    textSize(height/25);
+    textAlign(LEFT,CENTER);
+    if(gamefield.players[gamefield.player_counter].highlight)
+    { fill(#ff0000); }
+    else
+    { fill(secCol); }
+    text("'s turn", width/6+width/16, width/50*8);
     
     this.gamefield.show();
 

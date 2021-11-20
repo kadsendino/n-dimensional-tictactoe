@@ -24,8 +24,9 @@ class PostGameMenue extends Menue
     textAlign(CENTER,CENTER);
     fill(secCol);
     text("GAME OVER", width/2, this.y+this.h/20);
-    text(winner, width/2, height/2-this.h/20);
-    text("WINNS", width/2, height/2);
+    text("WINS", width/2, height/2);
+    
+    game.gamefield.players[game.gamefield.player_counter].show(width/2-width/16, height/2-width/8*2, width/6, width/6, height/200);
     
     super.draw();
     
@@ -50,4 +51,7 @@ class PostGameMenue extends Menue
     super.unselectButtons();
     this.restartBt.selected = false;
   }
+  
+  void refresh()
+  { game.gamefield.players[game.gamefield.player_counter].highlight = false; }
 }

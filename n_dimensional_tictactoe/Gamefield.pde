@@ -339,12 +339,13 @@ class Gamefield
       }
     }
     for(int i=0;i<sum_coords.length;i++)
+    {
+      if(sum_coords[i] % 3 != 0)
       {
-        if(sum_coords[i] % 3 != 0)
-        {
-          return false;
-        }
+        return false;
       }
+    }
+    player.highlight = true;
     return true;
   }
 }
