@@ -43,7 +43,7 @@ class PostGameMenue extends Menue
   {
     if(this.restartBt.mouseOver() && this.restartBt.selected)
     { changeMode = 1; }
-    super.mouseReleased();
+    super.mouseUp();
   }
   
   void unselectButtons()

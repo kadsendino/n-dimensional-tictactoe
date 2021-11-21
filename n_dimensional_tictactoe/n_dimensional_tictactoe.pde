@@ -1,7 +1,7 @@
 /* 
 https://github.com/dennisgunter/n-dimensional-tictactoe
 begin: 06.11.21
-last updated: 20.11.21
+last updated: 21.11.21
 */
 
 int mode=0, changeMode=0, fade=0;
@@ -20,6 +20,7 @@ About about;
 InGameMenue igm;
 Statistics stats;
 PostGameMenue pogm;
+ColorAjustment ca;
 
 void setup()
 {
@@ -39,6 +40,7 @@ void setup()
   about = new About();
   igm = new InGameMenue();
   pogm = new PostGameMenue();
+  ca = new ColorAjustment();
 }
 
 void draw()
@@ -61,6 +63,8 @@ void draw()
   { stats.draw(); }
   else if(mode == 7)
   { pogm.draw(); }
+  else if(mode == 8)
+  { ca.draw(); }
   
   if(fade > 0)
   { printError(); }
@@ -94,6 +98,8 @@ void mousePressed()
   { stats.mousePressed(); }
   else if(mode == 7)
   { pogm.mousePressed(); }
+  else if(mode == 8)
+  { ca.mousePressed(); }
   
   fade -= 30;
 }
@@ -115,6 +121,14 @@ void mouseReleased()
   { stats.mouseReleased(); }
   else if(mode == 7)
   { pogm.mouseReleased(); }
+  else if(mode == 8)
+  { ca.mouseReleased(); }
+}
+
+void keyPressed()
+{
+  if(mode == 8)
+  { ca.keyPressed(); }
 }
 
 void switchMode()
@@ -133,6 +147,7 @@ void switchMode()
   else if(changeMode == 6) {} //stats
   else if(changeMode == 7) //PostGameMenue
   { pogm.refresh(); } 
+  else if(changeMode == 8){} //ColorAjustment
   else
   {
     createError("ERROR : 00 : "+changeMode);
@@ -160,6 +175,11 @@ void createError(String error)
   else
   { errorText = error; }
   fade = 350;
+}
+void createDevMessage(String message)
+{
+  if(devSettings)
+  { createError(message); }
 }
 
 void clearErrors()

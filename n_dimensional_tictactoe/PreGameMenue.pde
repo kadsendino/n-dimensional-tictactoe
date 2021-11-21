@@ -81,10 +81,7 @@ class PreGameMenue extends Menue
   }
   void mouseReleased()
   {
-    if(this.backBt.mouseOver() && this.backBt.selected)
-    { changeMode = 0; }
-    
-    else if(this.minusBt.mouseOver() && this.minusBt.selected)
+    if(this.minusBt.mouseOver() && this.minusBt.selected)
     {
       this.dimensions--;
       if(this.dimensions < 1)
@@ -131,7 +128,7 @@ class PreGameMenue extends Menue
     else if(this.playBt.mouseOver() && this.playBt.selected)
     { changeMode = 1; }
     
-    this.unselectButtons();
+    super.mouseUp();
   }
   
   void unselectButtons()

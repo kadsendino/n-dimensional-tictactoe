@@ -42,7 +42,7 @@ class InGameMenue extends Menue
       changeMode = 1;
       mode = 1;
     }
-    super.mouseReleased();
+    super.mouseUp();
   }
   
   void unselectButtons()

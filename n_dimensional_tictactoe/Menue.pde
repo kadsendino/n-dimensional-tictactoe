@@ -14,19 +14,27 @@ class Menue
   }
 
   void draw()
-  { this.backBt.draw(); }
+  {
+    if(settings.showBackButtons)
+    this.backBt.draw();
+  }
   
   void mousePressed()
   {
-    if(this.backBt.mouseOver())
+    if(this.backBt.mouseOver() && settings.showBackButtons)
     { this.backBt.selected = true; }
   }
-  void mouseReleased()
+  boolean mouseUp()
   {
-    if(this.backBt.mouseOver() && this.backBt.selected)
-    { changeMode = 0; }
+    if(this.backBt.mouseOver() && this.backBt.selected && settings.showBackButtons)
+    {
+      changeMode = 0;
+      return true;
+    }
     
     this.unselectButtons();
+    
+    return false;
   }
   
   void unselectButtons()

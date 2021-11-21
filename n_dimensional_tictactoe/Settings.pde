@@ -1,15 +1,16 @@
 class Settings extends Menue
 {
   int devSet=0;
-  Boolean darkMode = false;
-  Button darkModeBt, devSetBt, backToggleBt;
+  Boolean darkMode=false, showBackButtons=true;;
+  Button darkModeBt, devSetBt, backToggleBt, ajustColorBt;
   
   Settings()
   {
     super();
     this.darkModeBt = new Button(this.x+this.w/2-this.w/3, this.y+this.w/5, this.w/1.5, this.w/5, "DARK MODE");
-    this.devSetBt = new Button(this.x+this.w/2-this.w/3, this.y+this.w/5*2.5, this.w/1.5, this.w/5, "dev. options: "+devSettings);
-    this.backToggleBt = new Button(this.x+this.w/2-this.w/10, this.y+this.w/5, this.w/5, "Toggle Back Buttons");
+    this.ajustColorBt = new Button(this.x+this.w/2-this.w/3, this.y+this.w/5*2.5, this.w/1.5, this.w/5, "Ajust COLOR");
+    this.backToggleBt = new Button(this.x+this.w/2-this.w/3, this.y+this.w/5*4, this.w/1.5, this.w/5, "Hide BACK Buttons");
+    this.devSetBt = new Button(this.x+this.w/2-this.w/3, this.y+this.w/5*5.5, this.w/1.5, this.w/5, "dev. options: "+devSettings);
   }
   
   void draw()
@@ -17,6 +18,8 @@ class Settings extends Menue
     super.draw();
     this.darkModeBt.draw();
     this.devSetBt.draw();
+    this.backToggleBt.draw();
+    this.ajustColorBt.draw();
     
     this.devSet--;
   }
@@ -28,6 +31,10 @@ class Settings extends Menue
     { this.darkModeBt.selected = true; }
     else if(this.devSetBt.mouseOver())
     { this.devSetBt.selected = true; }
+    else if(this.backToggleBt.mouseOver())
+    { this.backToggleBt.selected = true; }
+    else if(this.ajustColorBt.mouseOver())
+    { this.ajustColorBt.selected = true; }
   }
   void mouseReleased()
   {
@@ -40,15 +47,18 @@ class Settings extends Menue
       
       if(this.darkMode)
       {
-        this.darkModeBt.label = "LIGHT";
+        this.darkModeBt.label = "LIGHT MODE";
         m1logoIMG = loadImage("m1logoLight.png");
       }
       else
       {
-        this.darkModeBt.label = "DARK";
+        this.darkModeBt.label = "DARK MODE";
         m1logoIMG = loadImage("m1logoDark.png");
       }
     }
+    
+    else if(this.ajustColorBt.mouseOver() && this.ajustColorBt.selected)
+    { changeMode = 8; }
     
     else if(this.devSetBt.mouseOver() && this.devSetBt.selected)
     {
@@ -74,7 +84,16 @@ class Settings extends Menue
       this.devSetBt.label = "dev. options: "+devSettings;
     }
     
-    super.mouseReleased();
+    else if(this.backToggleBt.mouseOver() && this.backToggleBt.selected == true)
+    {
+      this.showBackButtons = !this.showBackButtons;
+      if(this.showBackButtons)
+      { this.backToggleBt.label = "Hide BACK buttons"; }
+      else
+      { this.backToggleBt.label = "Show BACK buttons"; }
+    }
+    
+    super.mouseUp();
   }
   
   void unselectButtons()
@@ -82,5 +101,7 @@ class Settings extends Menue
     super.unselectButtons();
     this.darkModeBt.selected = false;
     this.devSetBt.selected = false;
+    this.backToggleBt.selected = false;
+    this.ajustColorBt.selected = false;
   }
 }

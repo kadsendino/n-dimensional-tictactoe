@@ -38,11 +38,11 @@ class Statistics extends Menue
   {
     if(this.resetBt.mouseOver() && this.resetBt.selected)
     {
-      //String[]content = {"9","8"};
-      //fileM.saveFile(content, "stats.ndttt");
+      String[]content = {"9","8"};
+      fileM.saveFile(content, "stats.ndttt");
       { createError("ERROR : 02 : fileM.write"); }
     }
-    super.mouseReleased();
+    super.mouseUp();
   }
   
   void unselectButtons()
