@@ -13,6 +13,19 @@ int power(int a,int b)
   return erg;
 }
 
+int index(int[] arr , int value)
+{
+  for(int i=0;i<arr.length;i++)
+  {
+    if(arr[i] == value)
+    {
+      return i;
+    }
+  }
+  return -1;
+  
+}
+
 
 class Gamefield
 {
@@ -325,7 +338,9 @@ class Gamefield
   
   boolean check_winner(Player player)
   {
-    int[] sum_coords = new int[this.dim]; 
+    int[] sum_coords = new int[this.dim];
+   
+    
     for(int field:player.fields)
     {
       int[] coords = this.getCoords_Field(this.dim , field);
@@ -343,6 +358,27 @@ class Gamefield
       if(sum_coords[i] % 3 != 0)
       {
         return false;
+      }
+    }
+    
+    int index_one = -1; 
+    for(int field:player.fields)
+    {
+      int[] coords = this.getCoords_Field(this.dim , field);
+      for(int j=0;j<coords.length;j++)
+      {
+        if(sum_coords[j] % 3 == 0 && coords[j] == 1)
+        {
+          if (index_one == -1)
+          {
+            index_one = index(coords,coords[j]);
+          }
+          else if(index_one != index(coords,coords[j]))
+          {
+            return false;
+          }
+        }
+        
       }
     }
     player.highlight = true;

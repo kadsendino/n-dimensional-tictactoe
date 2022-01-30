@@ -26,7 +26,7 @@ class PostGameMenue extends Menue
     text("GAME OVER", width/2, this.y+this.h/20);
     text("WINS", width/2, height/2);
     
-    game.gamefield.players[game.gamefield.player_counter].show(width/2-width/16, height/2-width/8*2, width/6, width/6, height/200);
+    game.gamefield.players[game.gamefield.player_counter].show(width/2-width/12, height/2-width/4, width/6, width/6, height/200);
     
     super.draw();
     
