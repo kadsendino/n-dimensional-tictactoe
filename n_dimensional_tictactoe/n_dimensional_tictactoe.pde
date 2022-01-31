@@ -1,7 +1,7 @@
 /* 
 https://github.com/dennisgunter/n-dimensional-tictactoe
 begin: 06.11.21
-last updated: 21.11.21
+last updated: 31.01.22
 */
 
 int mode=0, changeMode=0, fade=0;
@@ -21,6 +21,7 @@ InGameMenue igm;
 Statistics stats;
 PostGameMenue pogm;
 ColorAjustment ca;
+TutorialMenue tm;
 
 void setup()
 {
@@ -41,6 +42,7 @@ void setup()
   igm = new InGameMenue();
   pogm = new PostGameMenue();
   ca = new ColorAjustment();
+  tm = new TutorialMenue();
 }
 
 void draw()
@@ -65,6 +67,8 @@ void draw()
   { pogm.draw(); }
   else if(mode == 8)
   { ca.draw(); }
+  else if(mode == 9)
+  { tm.draw(); }
   
   if(fade > 0)
   { printError(); }
@@ -100,6 +104,8 @@ void mousePressed()
   { pogm.mousePressed(); }
   else if(mode == 8)
   { ca.mousePressed(); }
+  else if(mode == 9)
+  { tm.mousePressed(); }
   
   fade -= 30;
 }
@@ -123,6 +129,8 @@ void mouseReleased()
   { pogm.mouseReleased(); }
   else if(mode == 8)
   { ca.mouseReleased(); }
+  else if(mode == 9)
+  { tm.mouseReleased(); }
 }
 
 void keyPressed()
@@ -148,6 +156,8 @@ void switchMode()
   else if(changeMode == 7) //PostGameMenue
   { pogm.refresh(); } 
   else if(changeMode == 8){} //ColorAjustment
+  else if(changeMode == 9) //Tutorial
+  { tm.refresh(); }
   else
   {
     createError("ERROR : 00 : "+changeMode);

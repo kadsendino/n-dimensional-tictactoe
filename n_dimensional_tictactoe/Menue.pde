@@ -16,7 +16,7 @@ class Menue
   void draw()
   {
     if(settings.showBackButtons)
-    this.backBt.draw();
+    { this.backBt.draw(); }
   }
   
   void mousePressed()
@@ -26,15 +26,16 @@ class Menue
   }
   boolean mouseUp()
   {
+    boolean ret = false;
     if(this.backBt.mouseOver() && this.backBt.selected && settings.showBackButtons)
     {
       changeMode = 0;
-      return true;
+      ret = true;
     }
     
     this.unselectButtons();
     
-    return false;
+    return ret;
   }
   
   void unselectButtons()

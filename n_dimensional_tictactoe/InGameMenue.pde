@@ -1,14 +1,15 @@
 class InGameMenue extends Menue
 {
-  Button continueBt;
+  Button menueBt;
   
   InGameMenue()
   {
     super();
     
-    this.backBt.label = "MENU";
+    this.backBt = new Button(this.x+this.w/2-this.w/3, this.y+this.w/5, this.w/1.5, this.w/5, "CONTINUE");
     
-    this.continueBt = new Button(this.x+this.w/2-this.w/3, this.y+this.w/5, this.w/1.5, this.w/5, "CONTINUE");
+    
+    this.menueBt = new Button(this.x+this.w/2-this.w/10, this.y+this.w/5*8.5, this.w/5, "MENUE");
   }
   
   void draw()
@@ -25,29 +26,34 @@ class InGameMenue extends Menue
     
     super.draw();
     
-    this.continueBt.draw();
+    this.menueBt.draw();
   }
   
   void mousePressed()
   {
     super.mousePressed();
     
-    if(this.continueBt.mouseOver())
-    { this.continueBt.selected = true; }
+    if(this.menueBt.mouseOver())
+    { this.menueBt.selected = true; }
   }
   void mouseReleased()
   {
-    if(this.continueBt.mouseOver())
+    if(this.menueBt.mouseOver())
+    {
+      changeMode = 0;
+      mode = 0;
+    }
+    else if(this.backBt.mouseOver() && this.backBt.selected && settings.showBackButtons)
     {
       changeMode = 1;
-      mode = 1;
     }
-    super.mouseUp();
+    
+    this.unselectButtons();
   }
   
   void unselectButtons()
   {
     super.unselectButtons();
-    this.continueBt.selected = false;
+    this.menueBt.selected = false;
   }
 }

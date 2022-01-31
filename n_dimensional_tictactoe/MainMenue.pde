@@ -9,9 +9,9 @@ class MainMenue extends Menue
     this.backBt.label = "QUIT";
 
     this.playBt = new Button(width/2-this.w/3, this.y+this.w/5, this.w/1.5, this.w/5, "PLAY");
-    this.statsBt = new Button(width/2-this.w/3, this.y+this.w/5*2.5, this.w/1.5, this.w/5, "STATISTICS");
+    this.statsBt = new Button(width/2-this.w/3, this.y+this.w/5*5.5, this.w/1.5, this.w/5, "STATISTICS");
     this.settingsBt = new Button(width/2-this.w/3, this.y+this.w/5*4, this.w/1.5, this.w/5, "SETTINGS");
-    this.manualBt = new Button(width/2-this.w/3, this.y+this.w/5*5.5, this.w/1.5, this.w/5, "HOW TO PLAY");
+    this.manualBt = new Button(width/2-this.w/3, this.y+this.w/5*2.5, this.w/1.5, this.w/5, "HOW TO PLAY");
     this.aboutBt = new Button(width/2-this.w/3, this.y+this.w/5*7, this.w/1.5, this.w/5, "ABOUT");
   }
   
@@ -40,7 +40,7 @@ class MainMenue extends Menue
     
     else if(this.aboutBt.mouseOver())
     { this.aboutBt.selected = true; }
-    else if(this.backBt.mouseOver())
+    else if(this.backBt.mouseOver() && settings.showBackButtons)
     { this.backBt.selected = true; }
   }
   void mouseReleased()
@@ -52,7 +52,7 @@ class MainMenue extends Menue
     else if(this.settingsBt.mouseOver() && this.settingsBt.selected)
     { changeMode = 2; }
     else if(this.manualBt.mouseOver() && this.manualBt.selected)
-    { createError("COMMING VERY SOON..."); }
+    { changeMode = 9; }
     else if(this.aboutBt.mouseOver() && this.aboutBt.selected)
     { changeMode = 4; }
     else if(this.backBt.mouseOver() && this.backBt.selected)

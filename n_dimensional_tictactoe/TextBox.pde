@@ -33,8 +33,8 @@ class TextBox extends Button
   void keyPressed()
   {
     if((key >= '0' && key <= '9') || (key >= 'a' && key <= 'f') || (key >= 'A' && key <= 'F'))
-    { this.label += key; createError("1");}
+    { this.label += key;}
     else if(key == BACKSPACE)
-    { this.label.substring(this.label.length()-1); }
+    { createDevMessage("backspace");this.label.substring(this.label.length()-1); }
   }
 }

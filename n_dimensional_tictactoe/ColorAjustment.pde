@@ -57,13 +57,15 @@ class ColorAjustment extends Menue
     {
       this.primColTBx.keyPressed();
       if(this.primColTBx.label.length() == 6)
-      { primCol = color(int(this.primColTBx.label)); }
+      //{ primCol = color(int(this.primColTBx.label)); }
+      {  }
     }
     else if(this.secColTBx.selected)
     {
       this.secColTBx.keyPressed();
       if(this.secColTBx.label.length() == 6)
-      { primCol = color(int(this.secColTBx.label)); }
+      //{ secCol = color(int(this.secColTBx.label)); }
+      {  }
     }
   }
   
