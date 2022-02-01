@@ -35,6 +35,11 @@ class Game
   
   void draw()
   {
+    if(gamefield.players[gamefield.player_counter].bot)
+    {
+      gamefield.manage_bot_turn();
+    }
+    
     gamefield.players[gamefield.player_counter].show(width/6-width/16, width/50*8-width/16, width/8, width/8, height/200);
     
     textSize(height/25);
@@ -49,10 +54,7 @@ class Game
 
     this.menueBt.draw();
     
-    if(gamefield.players[gamefield.player_counter].bot)
-    {
-      gamefield.manage_bot_turn();
-    }
+
     
     if(this.gamefield.winner != "")
     {
