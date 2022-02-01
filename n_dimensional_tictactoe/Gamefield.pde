@@ -23,7 +23,6 @@ int index(int[] arr , int value)
     }
   }
   return -1;
-  
 }
 
 
@@ -48,7 +47,7 @@ class Gamefield
   int pressed_field;
   String winner;
 
-  Gamefield(float x, float y, float w, float h, int dim)
+  Gamefield(float x, float y, float w, float h, int dim, int anz_player)
   {
     this.x = x;
     this.y = y;
@@ -71,8 +70,16 @@ class Gamefield
     int even_counter=0;
     for(int i=0;i<dim;i++)
     {
-      players[i] = new Player(i+1);       
-    
+      if(anz_player>0)
+      {
+        players[i] = new Player(i+1,false);   
+        anz_player--;
+      }
+      else
+      {
+        players[i] = new Player(i+1,true);      
+      }
+      
       if(i % 2 == 0) //  dim -> odd
       {
        this.odd_lines += 2 * power(3,odd_counter);
@@ -224,7 +231,7 @@ class Gamefield
   
   boolean make_turn(int old_index, int new_index) // returns if turn was valid
   {
-    if(new_index != this.pressed_field)
+    if(new_index != this.pressed_field && !this.players[player_counter].bot)
     {
       return false;
     }
@@ -258,6 +265,7 @@ class Gamefield
       }
     }
 
+    
     for(int i=0;i<this.players[player_counter].fields.length;i++)
     {
       if(this.players[player_counter].fields[i] == old_index)
@@ -281,6 +289,43 @@ class Gamefield
     return true;
   }
   
+  void manage_bot_turn()
+  {
+    int index = -1;
+    while(!this.valid_selection)
+    {
+      index = (int)random(0,this.fields);
+      this.valid_selection = true;
+      
+      for(Player player:players)
+      {
+        for(int field:player.fields)
+        {
+          if(field == index)
+          {
+            this.valid_selection = false;
+            break;
+          }
+        }
+        if(!valid_selection){break;}
+      }
+    }
+    
+    this.selected_field=this.players[player_counter].fields[(int) random(0,this.players[player_counter].fields.length)]; 
+    for(int field:this.players[player_counter].fields)
+    {
+      if(field == -1)
+      {
+        this.selected_field = -1;
+      }
+    }
+    
+    
+    this.make_turn(this.selected_field,index);
+    this.selected_field = -1;
+    this.valid_selection = false;
+    
+  }
   void manage_turn(int x_pos, int y_pos)
   {
     int index = this.getIndex(x_pos , y_pos);
@@ -339,7 +384,7 @@ class Gamefield
   boolean check_winner(Player player)
   {
     int[] sum_coords = new int[this.dim];
-   
+    int[] triple_one = new int[this.dim];
     
     for(int field:player.fields)
     {
@@ -349,6 +394,10 @@ class Gamefield
         if(coords[i] == -1)
         {
           return false;
+        }
+        else if(coords[i] == 1)
+        {
+          triple_one[i]++;
         }
         sum_coords[i] += coords[i];
       }
@@ -367,7 +416,7 @@ class Gamefield
       int[] coords = this.getCoords_Field(this.dim , field);
       for(int j=0;j<coords.length;j++)
       {
-        if(sum_coords[j] % 3 == 0 && coords[j] == 1)
+        if(sum_coords[j] % 3 == 0 && coords[j] == 1 && triple_one[j] != 3)
         {
           if (index_one == -1)
           {
@@ -378,7 +427,6 @@ class Gamefield
             return false;
           }
         }
-        
       }
     }
     player.highlight = true;

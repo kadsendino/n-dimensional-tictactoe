@@ -27,7 +27,7 @@ class Game
       h = 3*w;
     }
     
-    this.gamefield = new Gamefield(x,y,w,h,dimensions);
+    this.gamefield = new Gamefield(x,y,w,h,dimensions,players);
     
     this.gameMode = gameMode;
     this.players = players;
@@ -49,6 +49,11 @@ class Game
 
     this.menueBt.draw();
     
+    if(gamefield.players[gamefield.player_counter].bot)
+    {
+      gamefield.manage_bot_turn();
+    }
+    
     if(this.gamefield.winner != "")
     {
       pogm.winner = this.gamefield.winner;
@@ -62,7 +67,7 @@ class Game
     if(this.menueBt.mouseOver())
     { this.menueBt.selected = true; }
     
-    if(this.gamefield.mouseOver())
+    if(this.gamefield.mouseOver() && !gamefield.players[gamefield.player_counter].bot)
     { 
       this.gamefield.press(mouseX,mouseY);
     }
@@ -74,7 +79,7 @@ class Game
       backGroundIMG = get();
       changeMode = 5;
     }
-    if(this.gamefield.mouseOver())
+    if(this.gamefield.mouseOver() && !gamefield.players[gamefield.player_counter].bot)
     { 
       this.gamefield.manage_turn(mouseX,mouseY);
     }
