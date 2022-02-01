@@ -3,9 +3,11 @@ class Player
   int player_id=0;
   int[] fields;
   boolean highlight=false;
+  boolean bot;
   
-  Player(int player_id)
+  Player(int player_id,boolean bot)
   {
+    this.bot = bot;
     this.player_id = player_id;
     this.fields = new int[3];
     for(int i=0;i<fields.length;i++)

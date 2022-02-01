@@ -13,14 +13,14 @@ class TutorialMenue extends Menue
     
     this.continueBt = new Button(this.x+this.w/2-this.w/3, this.y+this.w/5*7, this.w/1.5, this.w/5, "CONTINUE");
 
-    this.tutorialTicTacToe = new Gamefield(width/10, this.y+this.h/7.5, width/5*4, width/5*4, this.tutorialDimensions, this.tutorialDimensions);
+    this.tutorialTicTacToe = new Gamefield(width/10, this.y+this.h/7.5, width/5*4, width/5*4, this.tutorialDimensions);
   }
   
   void refresh()
   {
     this.curText = 0;
     this.tutorialDimensions = 2;
-    this.tutorialTicTacToe = new Gamefield(width/10, this.y+this.h/7.5, width/5*4, width/5*4, this.tutorialDimensions, this.tutorialDimensions);
+    this.tutorialTicTacToe = new Gamefield(width/10, this.y+this.h/7.5, width/5*4, width/5*4, this.tutorialDimensions);
   }
   
   void draw()
@@ -83,7 +83,7 @@ class TutorialMenue extends Menue
           yt = height/2 - (3*w)/2;
           ht = 3*w;
         }
-        this.tutorialTicTacToe = new Gamefield(xt, yt, wt, ht, this.tutorialDimensions, this.tutorialDimensions);
+        this.tutorialTicTacToe = new Gamefield(xt, yt, wt, ht, this.tutorialDimensions);
       }
     }
     this.tutorialTicTacToe.unPress();
