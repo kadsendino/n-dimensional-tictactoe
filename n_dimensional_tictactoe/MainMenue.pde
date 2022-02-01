@@ -1,39 +1,73 @@
-class MainMenue
+class MainMenue extends Menue
 {
-  float x, y, w, h, st;
-  color col = #130820;
-  
-  Button playBt, settingsBt;
+  Button playBt, manualBt, statsBt, settingsBt, aboutBt;
   
   MainMenue()
   {
-    this.x = width/10;
-    this.y = height/8*3;
-    this.w = width/10*8;
-    this.h = height/2;
-    this.st = this.h/45;
+    super();
 
-    this.playBt = new Button(this.x+this.w/2-this.w/10, this.y+this.h/2-this.w/10, this.w/5, "PLAY");
-    this.settingsBt = new Button(this.x+this.w/2-this.w/6, this.y+this.h/2+this.w/6, this.w/3, this.w/5, "SETTINGS");
+    this.backBt.label = "QUIT";
+
+    this.playBt = new Button(width/2-this.w/3, this.y+this.w/5, this.w/1.5, this.w/5, "PLAY");
+    this.statsBt = new Button(width/2-this.w/3, this.y+this.w/5*2.5, this.w/1.5, this.w/5, "STATISTICS");
+    this.settingsBt = new Button(width/2-this.w/3, this.y+this.w/5*4, this.w/1.5, this.w/5, "SETTINGS");
+    this.manualBt = new Button(width/2-this.w/3, this.y+this.w/5*5.5, this.w/1.5, this.w/5, "HOW TO PLAY");
+    this.aboutBt = new Button(width/2-this.w/3, this.y+this.w/5*7, this.w/1.5, this.w/5, "ABOUT");
   }
   
   void draw()
   {
-    stroke(this.col);
-    strokeWeight(this.st);
-    noFill();
-    rect(this.x, this.y, this.w, this.h);
+    super.draw();
     
-    playBt.draw();
-    settingsBt.draw();
+    this.playBt.draw();
+    this.manualBt.draw();
+    this.statsBt.draw();
+    this.settingsBt.draw();
+    this.aboutBt.draw();
   }
+  
   void mousePressed()
   {
     if(this.playBt.mouseOver())
-    { changeMode = 1; }
-    else if(this.playBt.mouseOver())
-    { changeMode = 2; }
+    { this.playBt.selected = true; }
+    else if(this.manualBt.mouseOver())
+    { this.manualBt.selected = true; }
+    
+    else if(this.statsBt.mouseOver())
+    { this.statsBt.selected = true; }
+    else if(this.settingsBt.mouseOver())
+    { this.settingsBt.selected = true; }
+    
+    else if(this.aboutBt.mouseOver())
+    { this.aboutBt.selected = true; }
+    else if(this.backBt.mouseOver())
+    { this.backBt.selected = true; }
   }
-  void refresh()
-  {}
+  void mouseReleased()
+  {
+    if(this.playBt.mouseOver() && this.playBt.selected)
+    { changeMode = 3; }
+    else if(this.statsBt.mouseOver() && this.statsBt.selected)
+    { changeMode = 6; }
+    else if(this.settingsBt.mouseOver() && this.settingsBt.selected)
+    { changeMode = 2; }
+    else if(this.manualBt.mouseOver() && this.manualBt.selected)
+    { createError("COMMING VERY SOON..."); }
+    else if(this.aboutBt.mouseOver() && this.aboutBt.selected)
+    { changeMode = 4; }
+    else if(this.backBt.mouseOver() && this.backBt.selected)
+    { quitGame(); }
+    
+    this.unselectButtons();
+  }
+  
+  void unselectButtons()
+  {
+    this.playBt.selected = false;
+    this.manualBt.selected = false;
+    this.statsBt.selected = false;
+    this.settingsBt.selected = false;
+    this.aboutBt.selected = false;
+    this.backBt.selected = false;
+  }
 }
