@@ -68,21 +68,22 @@ class TutorialMenue extends Menue
       if(this.tutorialTicTacToe.players[0].fields[2] != (-1) || this.tutorialDimensions > 2)
       {
         this.tutorialDimensions ++;
+        float xt, wt, yt, ht;
         if(tutorialDimensions % 2 == 0)
         {
-          x = width/10;
-          w = width - width / 5;
-          y = height/2 - w/2;
-          h = w;
+          xt = width/10;
+          wt = width - width / 5;
+          yt = height/2 - w/2;
+          ht = w;
         }
         else
         {
-          x = width/4;
-          w = width - width / 2;
-          y = height/2 - (3*w)/2;
-          h = 3*w;
+          xt = width/4;
+          wt = width - width / 2;
+          yt = height/2 - (3*w)/2;
+          ht = 3*w;
         }
-        this.tutorialTicTacToe = new Gamefield(x, y, w, h, this.tutorialDimensions);
+        this.tutorialTicTacToe = new Gamefield(xt, yt, wt, ht, this.tutorialDimensions);
       }
     }
     this.tutorialTicTacToe.unPress();
